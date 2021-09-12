@@ -30,12 +30,14 @@ pipeline {
             }
          steps { 
             script {
-                     docker.Withregistry('https://registry.hub.docker.com','docker_hub_login')
+                docker.Withregistry('https://registry.hub.docker.com','docker_hub_login') {
                      app.push ("${env.BUILD_NUMBER}")
                      app.push ("latest")
+                  }
                }
             }
-        }
+            
+         }
      }
    }
 
